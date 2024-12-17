@@ -137,6 +137,42 @@ class LinkedList {
         // we can also use get method here
     }
 
+    insert(index, value) {
+        if (index < 0 || index >= this.length) return "Invalid index.";
+        let newNode = new Node(value)
+
+        if (index === 0) {
+            return this.unshift(value)
+        }
+
+        if (index === this.length) {
+            return this.push(value)
+        }
+
+        // method-1
+        let temp = this.head
+        let counter = 0
+        while (temp) {
+            if (counter === index - 1) {
+                newNode.next = temp.next
+                temp.next = newNode
+            }
+            counter++;
+            temp = temp.next
+        }
+
+        // method-2
+        // const tempTail = this.get(index-1)
+        // newNode.next = tempTail.next
+        // tempTail.next = newNode
+    }
+
+    clear() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }    
+
 }
 
 const myLinkedList = new LinkedList(1);
@@ -148,8 +184,13 @@ myLinkedList.push(15);
 // myLinkedList.unshift(90);
 // console.log(myLinkedList);
 // console.log(myLinkedList.shift());
-// console.log(myLinkedList);
-console.log(myLinkedList.set(1, 40));
+console.log(myLinkedList);
+myLinkedList.insert(2, 40)
+myLinkedList.insert(1, 44)
+console.log(myLinkedList.get(1));
+myLinkedList.clear()
+console.log(myLinkedList);
+
 
 
 
