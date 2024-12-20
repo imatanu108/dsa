@@ -5,3 +5,5 @@
 5. Stack
 6. Queue
 7. Hash Table
+8. Binary Search Tree
+9. Recurssion
