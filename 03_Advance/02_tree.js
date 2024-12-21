@@ -50,7 +50,7 @@ class BST {
             return false;
         }
         let temp = this.root
-        while(temp) {
+        while (temp) {
             if (value === temp.value) return true; // Value found
             temp = value < temp.value ? temp.left : temp.right;
         }
@@ -64,16 +64,42 @@ class BST {
 
         queue.push(current)
 
-        while(queue.length) {
+        while (queue.length) {
             current = queue.shift()
             data.push(current.value)
             if (current.left) queue.push(current.left);
             if (current.right) queue.push(current.right)
         }
-        
+
         return data;
     }
-    
+
+    dfsPreOrder(node = this.root, data = []) {
+        if (node === null) return data;
+            
+        data.push(node.value);
+        if (node.left) this.dfsPreOrder(node.left, data);
+        if (node.right) this.dfsPreOrder(node.right, data);
+        return data;
+    }
+
+    dfsPostOrder(node = this.root, data = []) {
+        if (node === null) return data;
+
+        if (node.left) this.dfsPostOrder(node.left, data);
+        if (node.right) this.dfsPostOrder(node.right, data);
+        data.push(node.value);
+        return data
+    }
+
+    dfsInorder(node = this.root, data = []) {
+        if (node === null) return data;
+
+        if (node.left) this.dfsInorder(node.left, data);
+        data.push(node.value);
+        if (node.right) this.dfsInorder(node.right, data);
+        return data
+    }
 }
 
 const tree = new BST()
@@ -83,4 +109,8 @@ tree.insert(8)
 tree.insert(1)
 tree.insert(7)
 tree.insert(9)
-console.log(tree.includes(7))
+// console.log(tree.includes(7))
+console.log(tree.bfs())
+console.log(tree.dfsPreOrder())
+console.log(tree.dfsPostOrder())
+console.log(tree.dfsInorder())
