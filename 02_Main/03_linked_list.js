@@ -209,12 +209,48 @@ myLinkedList.push(3);
 // myLinkedList.insert(1, 44)
 // console.log(myLinkedList.get(1));
 // myLinkedList.clear()
-console.log(myLinkedList);
-myLinkedList.reverse()
+// console.log(myLinkedList);
 // myLinkedList.reverse()
-console.log(myLinkedList);
+// myLinkedList.reverse()
+// console.log(myLinkedList);
 
 
+function addTwoNumbers(l1, l2) {
+    let getNumber = list => {
+        let number = 0
+        let temp = list.head
+        let i = 1
+        while(temp) {
+            number = number + temp.value * i
+            i *= 10
+            temp = temp.next
+        }
+        return number
+    }
+
+    const num1 = getNumber(l1)
+    const num2 = getNumber(l2)
+    console.log(num1, num2)
+    let sum = num1 + num2
+
+    let sumList;
+    while(sum) {
+        let n = sum%10
+        if (!sumList) {
+            sumList = new LinkedList(n)
+        } else {
+            sumList.push(n)
+        }
+        sum = Math.floor(sum/10)
+    }
+    return sumList;
+}
+
+const l1 = new LinkedList(3)
+l1.push(2)
+
+const l2 = new LinkedList(1)
+l2.push(3)
 
 
-
+console.log(addTwoNumbers(l1, l2))

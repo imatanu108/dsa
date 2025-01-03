@@ -98,4 +98,4 @@ const twoSum = (numbers, target) => {
     return []
 }
 
-console.log(twoSum([8,2,1,2,3,4],9))
+console.log(twoSum([8,4,3,4],8))
